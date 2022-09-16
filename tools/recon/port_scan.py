@@ -1,12 +1,15 @@
 from scapy.all import *
 import ipaddress
 from random import randint
-ports = [53, 80, 8080, 8443]
+
+ports = [22, 53, 80, 443, 2222, 8080, 8443, 5000, 9000]
 
 
 def SynScan(host):
     ans, unans = sr(
-        IP(dst=host) / TCP(sport=randint(10000, 65532), dport=ports, flags="S"), timeout=2, verbose=1
+        IP(dst=host) / TCP(sport=randint(10000, 65532), dport=ports, flags="S"),
+        timeout=2,
+        verbose=1,
     )
     print("Open ports at %s:" % host)
     for s, r in ans:
