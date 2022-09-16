@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  dns:
+    build:
+      context: recon
+  web:
+    image: nginx
+    ports:
+      - 8080:80
