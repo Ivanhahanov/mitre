@@ -1,20 +1,22 @@
 import dns
 import dns.resolver
 import socket
+import sys
 
 domains = {}
 subs = "subdomains.txt"
 
 res = dns.resolver.Resolver()
-res.nameservers = ["localhost"]
-res.port = 8053
+address = sys.arg[1]
+res.nameservers = [address.split(':')[0]]
+res.port = address.split(':')[1]
 
-domain = "example.com"
+domain = sys.argv[2]
 nums = False
-# res.nameservers = ["127.0.0.1"]
-# res.port = 8053
+# res.nameservers = ["8.8.8.8"]
+# res.port = 53
 # domain = "google.com"
-# nums = False
+# nums = true
 
 def ReverseDNS(ip):
     try:
